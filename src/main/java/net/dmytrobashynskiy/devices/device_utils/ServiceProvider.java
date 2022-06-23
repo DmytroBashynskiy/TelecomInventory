@@ -50,7 +50,7 @@ public class ServiceProvider {
             List<IO> connectedOutputs = parentDevice.getOutputs().stream().
                     //this stream looks at the outputs list of parent, finds what output have connected pairs, and returns
                     // a list of connected pairs, that only belong to the connecting cable
-                    filter(x -> !(x.getConnectedPair()==null)).
+                    filter(x -> x.getConnectedPair()!=null).
                             filter(x -> x.getConnectedPair().getParentCable().equals(theirCable)).collect(Collectors.toList());
 
             List<Pair> pairsInOutput = new ArrayList<>();
@@ -62,7 +62,7 @@ public class ServiceProvider {
             List<IO> connectedInputs = childDevice.getInputs().stream().
                     //this stream looks at the inputs list of child, finds what input have connected pairs, and returns
                     // a list of connected pairs, that only belong to the connecting cable
-                            filter(x -> !(x.getConnectedPair()==null)).
+                            filter(x -> x.getConnectedPair()!=null).
                             filter(x -> x.getConnectedPair().getParentCable().equals(theirCable)).collect(Collectors.toList());
 
             List<Pair> pairsInInput = new ArrayList<>();
